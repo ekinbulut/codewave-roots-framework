@@ -14,7 +14,7 @@ namespace Roots.Framework.Configuration;
 
 public static class ServiceExtension
 {
-    public static IServiceCollection AddUnitOfWork(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddUnitOfWork(this IServiceCollection services, IConfiguration? configuration = null)
     {
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IReadonlyUnitOfWork, ReadonlyUnitOfWork>();
