@@ -5,12 +5,7 @@ namespace Roots.Framework.Externals.Http;
 public class RootsHttpClient : IRootsHttpClient
 {
     private readonly IRestClient _client;
-    
-    public RootsHttpClient(string baseUrl)
-    {
-        _client = new RestClient(baseUrl);
-    }
-    
+
     public RootsHttpClient(IRestClient restClient)
     {
         _client = restClient;
