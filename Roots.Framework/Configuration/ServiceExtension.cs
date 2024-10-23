@@ -54,6 +54,8 @@ public static class ServiceExtension
     
     public static IServiceCollection AddRootsMessaging(this IServiceCollection services, IConfiguration? configuration = null)
     {
+        services.Configure<RabbitMQSettings>(configuration?.GetSection("RabbitMQSettings"));
+        //var rabbitMqSettings = configuration?.GetSection("RabbitMQSettings").Get<RabbitMQSettings>();
 
         services.AddScoped<IRootsRabbitMqClient, RootsRabbitMqClient>();    
 
