@@ -11,6 +11,7 @@ public interface IRootsRabbitMqClient
     Task PublishToExchangeAsync(string exchangeName, string routingKey, string message, CancellationToken cancellationToken = default);
     void Publish(string queueName, string message);
     Task PublishAsync(string queueName, string message, CancellationToken cancellationToken = default);
+    Task<bool> PublishWithAckAsync(string queueName, string message, CancellationToken cancellationToken = default);
     void Consume(string queueName, Action<string> onMessageReceived);
     void Dispose();
 }
