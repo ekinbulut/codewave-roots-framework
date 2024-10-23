@@ -28,7 +28,8 @@ public static class ServiceExtension
     {
         services.AddMediatR(configuration)
             .AddScoped(typeof(IRequestExceptionHandler<,,>), typeof(GlobalRequestExceptionHandler<,,>))
-            .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+            .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
+            .AddTransient(typeof(IPipelineBehavior<,>), typeof(TraceIdBehavior<,>));
 
         return services;
     }
