@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using Roots.Framework.Configuration;
+using Roots.Framework.Settings;
 
 namespace Roots.Framework.Externals.Messaging;
 
@@ -13,7 +14,11 @@ public class RootsRabbitMqClient : IDisposable, IRootsRabbitMqClient
 
     public RootsRabbitMqClient(IOptions<RabbitMQSettings> options)
     {
-        var factory = new ConnectionFactory() { HostName = options.Value.HostName };
+        var factory = new ConnectionFactory() { 
+            HostName = options.Value.HostName, 
+            UserName = options.Value.Username,
+            Password = options.Value.Password
+        };
         _connection = factory.CreateConnection();
         _channel = _connection.CreateModel();
     }
