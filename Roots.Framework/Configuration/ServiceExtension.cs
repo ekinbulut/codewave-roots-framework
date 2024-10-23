@@ -31,6 +31,8 @@ public static class ServiceExtension
             .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
             .AddTransient(typeof(IPipelineBehavior<,>), typeof(TraceIdBehavior<,>));
 
+        services.AddHttpContextAccessor();
+
         return services;
     }
     
@@ -90,5 +92,10 @@ public static class ServiceExtension
     public static IApplicationBuilder UseRootLogging(this IApplicationBuilder builder)
     {
         return builder.UseMiddleware<LoggingMiddleware>();
+    }
+    
+    public static IApplicationBuilder UseRootErrorHandling(this IApplicationBuilder builder)
+    {
+        return builder.UseMiddleware<ErrorHandlerMiddleware>();
     }
 }
