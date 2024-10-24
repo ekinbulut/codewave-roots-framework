@@ -8,6 +8,7 @@ namespace Roots.Framework.Security.Jwt;
 public interface ITokenService
 {
     string GenerateToken(string userId, string username);
+    ClaimsPrincipal ValidateToken(string token);
 }
 
 public class TokenService : ITokenService
@@ -44,4 +45,32 @@ public class TokenService : ITokenService
         var token = tokenHandler.CreateToken(tokenDescriptor);
         return tokenHandler.WriteToken(token);
     }
+
+    public ClaimsPrincipal ValidateToken(string token)
+    {
+        var tokenHandler = new JwtSecurityTokenHandler();
+        var key = Encoding.ASCII.GetBytes(_secretKey);
+
+        var validationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = _issuer,
+            ValidAudience = _audience,
+            IssuerSigningKey = new SymmetricSecurityKey(key)
+        };
+
+        try
+        {
+            var principal = tokenHandler.ValidateToken(token, validationParameters, out SecurityToken validatedToken);
+            return principal;
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
 }
