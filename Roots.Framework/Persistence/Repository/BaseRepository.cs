@@ -54,4 +54,15 @@ public class BaseRepository<T> : IRepository<T> where T: class, new()
     {
         return await Task.FromResult(DeleteBy(entity));
     }
+    
+    public bool Update(T entity)
+    {
+        _dbContext.Entry(entity).State = EntityState.Modified;
+        return _dbContext.SaveChanges() > 0;
+    }
+    public async Task<bool> UpdateAsync(T entity, CancellationToken token)
+    {
+        _dbContext.Entry(entity).State = EntityState.Modified;
+        return await _dbContext.SaveChangesAsync(token) > 0;
+    }
 }

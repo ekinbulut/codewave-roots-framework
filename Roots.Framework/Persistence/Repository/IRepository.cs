@@ -10,4 +10,6 @@ public interface IRepository<T> where T: class, new()
     Task<bool> DeleteByAsync(Guid id, CancellationToken token);    
     bool DeleteBy(T entity);
     Task<bool> DeleteByAsync(T entity, CancellationToken token);
+    bool Update(T entity);
+    Task<bool> UpdateAsync(T entity, CancellationToken token);
 }
