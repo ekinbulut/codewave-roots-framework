@@ -1,4 +1,5 @@
 # Roots.Framework
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 Roots.Framework is a modular .NET library providing foundational building blocks for enterprise applications, including CQRS, unit of work, repository patterns, middleware, JWT authentication, HTTP/RabbitMQ clients, and more.
 
@@ -31,49 +32,49 @@ Roots.Framework/
 
 1. **Install NuGet Package**
 
-   (Publish the package to your NuGet feed and install it in your project.)
+  (Publish the package to your NuGet feed and install it in your project.)
 
 2. **Register Services in `Startup.cs` or Program**
 
-   ```csharp
-   // Add to your DI container
-   services.AddUnitOfWork(Configuration);
-   services.AddRootMediatr(cfg => { /* MediatR config */ });
-   services.AddRootsHttpClient(Configuration);
-   services.AddRootsMessaging(Configuration);
-   services.AddRootsJWT(Configuration);
-   ```
+  ```csharp
+  // Add to your DI container
+  services.AddUnitOfWork(Configuration);
+  services.AddRootMediatr(cfg => { /* MediatR config */ });
+  services.AddRootsHttpClient(Configuration);
+  services.AddRootsMessaging(Configuration);
+  services.AddRootsJWT(Configuration);
+  ```
 
 3. **Configure Middleware**
 
-   ```csharp
-   app.UseRootErrorHandling();
-   app.UseRootLogging();
-   app.UseRequestCulture();
-   ```
+  ```csharp
+  app.UseRootErrorHandling();
+  app.UseRootLogging();
+  app.UseRequestCulture();
+  ```
 
 4. **Configure Settings**
 
-   Add relevant sections to your `appsettings.json`:
+  Add relevant sections to your `appsettings.json`:
 
-   ```json
-   {
-     "JwtSettings": {
-       "SecretKey": "your-secret",
-       "Issuer": "your-issuer",
-       "Audience": "your-audience",
-       "TokenExpiryInHours": 1
-     },
-     "RabbitMQSettings": {
-       "HostName": "localhost",
-       "Username": "guest",
-       "Password": "guest"
-     },
-     "Roots": {
-       "BaseUrl": "https://api.example.com"
-     }
-   }
-   ```
+  ```json
+  {
+    "JwtSettings": {
+     "SecretKey": "your-secret",
+     "Issuer": "your-issuer",
+     "Audience": "your-audience",
+     "TokenExpiryInHours": 1
+    },
+    "RabbitMQSettings": {
+     "HostName": "localhost",
+     "Username": "guest",
+     "Password": "guest"
+    },
+    "Roots": {
+     "BaseUrl": "https://api.example.com"
+    }
+  }
+  ```
 
 ## Key Components
 
@@ -102,4 +103,4 @@ Contributions are welcome! Please open issues or submit pull requests.
 
 ---
 
-**License:** MIT (or your chosen license)
+**License:** [MIT](LICENSE)
